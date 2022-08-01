@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'musicfont';
+  src: url('data:font/woff2;charset=utf-8;base64,d09GMgABAAAAAAV0AA0AAAAAC6wAAAUfAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GYACCYhEICooAiCgLGAABNgIkAx4EIAWFAgeBEBvVCciuB2z3GhhCwQEj1mnUPntjI6pOdL5F9j/2wfPk39u5M/PAJCuigtG63HnV2h3E0lWEMu4W7f953ewhYltKRUMqnop7yIcg1lCTE5FNxCab1Oh0N910k/iE2W7DLeCkALOuOJB213kYJLwnTi09HE2ouhiZjC5er/eAy1VNSBn6VPh0CoGgkoPWobGvvwD/k4hy9a/9Wj7RdNNF31m9XvbEds+TenPcp2sqkJYm6iX+IdEImZQgZI7VNdVKfB5xJkAAim/2FYCaZvOV5xYgBtoAKARNiGAABRiDnMYBdUT9Ak7B50sTI8QHhaNRvm/h9mo7PKzNrzukbQ7oKiwgAOkW82ni65TvWYuJsFfjMw0gxkdhalvUrvqvPVm3OReozUfsE8z9j772a0Hm9QhaWlySK4oCFKB/jwAmkgsKccQ2bQBaAHIT1CgAMABE6HU1DhqFamcuMCgSgyrtVP2S1eyVDFo3dfb2eTD27q2EhpWP2+5zdPZl+z04IA5RyfVl46k7FzhO9uBu/EXYl37QJbnso+RWrNkrYZsR2eURjAsdRVDc7MOnDxpi5ZwR2w6tmqqAPfi1w135C+h3Qdl72y9ydHZfHuk+L+dEYhJt1i7fFilUtohjlXxYaWFp8Xgd2eKP0Vq98Wzbt2v2+lMZPly8Sm2LRLLStQhtaeWWKQ+vGnHoFHAxPFr0YdhT4plVp8uD1QuTNyINy1DeXTkvOxaxRR/Ch2jF2W29H1gxxMGzHLkQHStdG/miZKwXOctXL0jl/F1YVvN3dR52dxdG2jZPKDTsldNnTXn48OohdZ1DR3nd78zLaLJYLU0ZzUHzbmvU1GwvgNbRqbsrrQvHbjQk9/Q3pjWkpDSkNd4wkIMCFPXf4CP9liyNZpkrdpI0TTqLf7EZmiRp4v9F7mOuainBXl3Vo37haV2a39SF8rvFMogu5SlliouZUg9g5ASZYjIzkMpKy9OBSRLYabrImpBP6sDu1IsDkQryfX84iN4Y2+ogayrP7dJ3qqsyk5p4hrX8p3XKxrFuG97SjBPROv+4yr9OwOtGw9gnol13yC4ooMIFEzSV5HUjJd7WDeOd6k5mXbtIJ2D8iR68vb0LzeBuRMmZJjWOGEQ0dIW0GlSkQVakKZwoMKLhQgrTRNOLJf62DWNdqsmgllKZUC7acQqmv7xRH9BwivN3aODb8/7CsHSijaOMdoJoz+h8ZCAHBSg68yP+hye+pkX1JrB+N3b3ILus3bV198AGAEAAgao7G35F228JhtPFDgNz62JtAPgoWlgP8QxZawhAF7MdAIzx7KbnP2PcSWWJCnKwriZiEwJrj54QA+Qg3YLPKNmSpBAEn/mg8NgBGp+MZXjXwSHiE7j4VELIQJm0c0RLOY1GTAD0AQCEfIpAkbICNPn4WYa3DRzacBpc8nkKIcv5sm5EH9kJlYSgGYfFNraDMcGsOQOFHx9oHgu8xrJeTlgvd2aBGkOyd1oMjYMwHsYJAX8rHGv1sSPz5dCEmITpj5GBjXTgPsfyM2zpTVkzsK/5yGu8ySRTOMiEhQWBgQjhxwtGTRdVGg8eKY4RyGfigoaCxQa8ImucnHJksiy6M2J9H9x6e+L8c3YcYGf/qwtQCAEB6jlugxrTB7etPtTYeuY35MJhLiHDig4lKFGixYgjrnjiS5Cck/nx80MiiVnP4bzCC9WI6I7n5GkcSc/XMH4JSJPvcV8wPBP2OcNeP+Vh6Alm3B/FkjM8jJ8nAw==')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.music-icon {
+  font-family: 'musicfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pause-f:before {
+  content: '\e659';
+}
+
+.icon-play-fill:before {
+  content: '\e787';
+}
+
+.icon-danquxunhuan:before {
+  content: '\e6a2';
+}
+
+.icon-liebiaoxunhuan:before {
+  content: '\e6a3';
+}
+
+.icon-music-list:before {
+  content: '\e699';
+}
+
+.icon-play-previous:before {
+  content: '\e610';
+}
+
+.icon-play-next:before {
+  content: '\e611';
+}
+
+.icon-reload:before {
+  content: '\e612';
+}
