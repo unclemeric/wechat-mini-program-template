@@ -36,8 +36,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@nutui/nutui": "^3.1.22",
-    "@nutui/nutui-taro": "^3.1.22",
+    "@nutui/nutui": "^3.2.3",
+    "@nutui/nutui-taro": "^3.2.3",
     "@tarojs/components": "3.3.7",
     "@tarojs/plugin-html": "3.3.7",
     "@tarojs/runtime": "3.3.7",
