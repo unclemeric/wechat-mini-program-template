@@ -1,0 +1,217 @@
+@import "./variables.scss";
+
+@mixin pageCssVar() {
+    // 主色调
+  --nut-primary-color: #ff9603;
+  --nut-primary-color-end: #ff9603;
+  // 辅助色
+  --nut-help-color: #f5f5f5;
+  // 标题常规文字
+  --nut-title-color: #1a1a1a;
+  // 副标题
+  --nut-title-color2: #666666;
+  // 次内容
+  --nut-text-color: #808080;
+  // 特殊禁用色
+  --nut-disable-color: #cccccc;
+  --nut-white: #fff;
+  --nut-black: #000;
+  --nut-required-color: #fa2c19;
+  // 暗黑模式下颜色
+  --nut-dark-background: #131313;
+  --nut-dark-background2: #1b1b1b;
+  --nut-nut-dark-background3: #141414;
+  --nut-nut-dark-background4: #323233;
+  --nut-dark-background5: #646566;
+  --nut-dark-background6: #380e08;
+  --nut-dark-background7: #707070;
+  --nut-dark-color: var(--nut-white);
+  --nut-dark-color2: #f2270c;
+  --nut-dark-color3: rgba(232, 230, 227, 0.8);
+  --nut-dark-color-gray: var(--nut-text-color);
+  --nut-dark-calendar-choose-color: rgba(227, 227, 227, 0.2);
+  // 字体
+  --nut-font-family: PingFang SC, Microsoft YaHei, Helvetica, Hiragino Sans GB, SimSun, sans-serif;
+  
+  // Font
+  --nut-font-size-0: 10px;
+  --nut-font-size-1: 12px;
+  --nut-font-size-2: 14px;
+  --nut-font-size-3: 16px;
+  --nut-font-size-4: 18px;
+  --nut-font-weight-bold: 400;
+  --nut-font-size-small: var(--nut-font-size-1);
+  --nut-font-size-base: var(--nut-font-size-2);
+  --nut-font-size-large: var(--nut-font-size-3);
+  --nut-line-height-base: 1.5;
+
+  --nut-button-default-font-size: 14px;
+}
+
+// 单行文本超出显示省略号
+.text-overflow-hidden {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 多行文本超出显示省略号
+@mixin more-line-nowrap($num) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $num;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+// 清除浮动
+.clear-fix {
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+
+// iphoneX适配
+.safe-area-inset-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-no-inset-bottom {
+  margin-bottom: constant(safe-area-inset-bottom);
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+// 1像素边框处理
+.border-top-1px,
+.border-right-1px,
+.border-bottom-1px,
+.border-left-1px,
+.border-surround {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    transform-origin: 0 0;
+    content: "";
+  }
+}
+
+@mixin border-top-1px($color:$color-border) {
+  &::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid $color;
+  }
+}
+
+@mixin border-bottom-1px($color:$color-border) {
+  &::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid $color;
+  }
+}
+
+@mixin border-right-1px($color:$color-border) {
+  &::after {
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-right: 1px solid $color;
+  }
+}
+
+@mixin border-left-1px($color:$color-border) {
+  &::before {
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-left: 1px solid $color;
+  }
+}
+
+@mixin border-surround($color) {
+  &::before {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid $color;
+  }
+}
+
+@media (min-resolution: 2dppx) {
+  .border-top-1px {
+    &::before {
+      transform: scaleY(0.5);
+    }
+  }
+
+  .border-bottom-1px {
+    &::after {
+      transform: scaleY(0.5);
+    }
+  }
+
+  .border-left-1px {
+    &::before {
+      transform: scaleX(0.5);
+    }
+  }
+
+  .border-right-1px {
+    &::after {
+      transform: scaleX(0.5);
+    }
+  }
+
+  .border-surround {
+    &::before {
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+    }
+  }
+}
+
+@media (min-resolution: 3dppx) {
+  .border-top-1px {
+    &::before {
+      transform: scaleY(0.333);
+    }
+  }
+
+  .border-bottom-1px {
+    &::after {
+      transform: scaleY(0.333);
+    }
+  }
+
+  .border-left-1px {
+    &::before {
+      transform: scaleX(0.333);
+    }
+  }
+
+  .border-right-1px {
+    &::after {
+      transform: scaleX(0.333);
+    }
+  }
+
+  .border-surround {
+    &::before {
+      width: 300%;
+      height: 300%;
+      transform: scale(0.333);
+    }
+  }
+}

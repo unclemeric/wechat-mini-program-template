@@ -1,0 +1,85 @@
+@import "./assets/styles/variables.scss";
+@import "./assets/styles/mixins.scss";
+// @import '../../assets/styles/mixins.scss';
+
+:root, page {
+  @include pageCssVar();
+}
+page {
+  padding-bottom: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
+  padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.main-container {
+  height: calc(100% - 38px);
+  overflow: hidden;
+}
+
+.fixed-bottom {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 38px;
+  // .safe-area-inset-bottom();
+  .nut-button {
+    // width: calc(100% - 10px);
+    width:100%;
+    border-radius: 5px;
+    margin: 0 auto;
+    height: 38px;
+  }
+}
+
+.mask {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-color {
+  color: $second-color;
+}
+.primary-color {
+  color: $primary-color;
+}
+
+.wx-textarea {
+  background: #f6f6f6;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  min-height: 60px;
+  width: 100%;
+  writing-mode: horizontal-tb !important;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  resize: auto;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  column-count: initial !important;
+}
+
+.nut-tag--danger {
+  background: #ff899e !important;
+}
+
+.nut-tag--primary {
+  background: #65c1ff !important;
+}
