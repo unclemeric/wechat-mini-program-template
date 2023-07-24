@@ -1,43 +1,35 @@
 import Taro from '@tarojs/taro'
-import request from '../utils/request'
-
 export const AppId = 'wxf04c0357243ae27c'
 export const UserInfoKey = '_user_info'
 export const SessionKey = '_session_key'
 
-export function reLogin(cb?: Function) {
-  return new Promise((resolve, _reject) => {
-    Taro.removeStorageSync(UserInfoKey)
-    Taro.removeStorageSync(SessionKey)
-    Taro.login({
-      success: (res) => {
-        if (res.code) {
-          let params = {
-            code: res.code,
-          }
-          request('get', `/wx/user/${AppId}/login`, params)
-            .then((res: any) => {
-              if (res.success) {
-                const { sessionKey = '', info } = res.data || {}
-                Taro.setStorageSync(SessionKey, sessionKey) // 存储sessionKey
-                Taro.setStorageSync(UserInfoKey, info)
-                cb && cb(res)
-              } else {
-                wxAlert(res)
-                Taro.hideLoading()
-              }
-              resolve(res)
-            })
-            .catch((err) => {
-              wxAlert(err.msg || err.message || '获取登录信息失败')
-              Taro.hideLoading()
-            })
-        } else {
-          console.log('获取登录信息失败')
-        }
-      },
-    })
-  })
+export const isPro = true // isPro=true正式，isPro=false测试
+export const api_prefix = 'https://www.hwagain.cn/childread' // 正式小程序  cn改为net，测试net改为cn
+export const web_prefix  = 'https://www.hwagain.cn/wx_childread' // 正式webview  cn改为net，测试net改为cn
+
+export const getApi_prefix = () : String => {
+  // let val = `${api_prefix}${releaseType ? (isPro ? '' : '_dev') : '_tiyan'}`
+  let val = `${api_prefix}${isPro ? '' : '_dev'}`
+  return val
+}
+
+export const getWebview_prefix = (path = '') : String => {
+  // let val = `${web_prefix}${releaseType ? (isPro ? '' : '_dev') : '_tiyan'}${path}`
+  let val = `${web_prefix}${isPro ? '' : '_dev'}${path}`
+  console.log(val)
+  return val
+}
+
+export const getWebview_prefix_img = () : String => {
+  return getWebview_prefix('/img')
+}
+
+export function setBirthday(date: String) {
+  let user = Taro.getStorageSync(UserInfoKey)
+  if (user.birthday !== date) {
+    user.birthday = date
+    Taro.setStorageSync(UserInfoKey, user)
+  }
 }
 
 export const IsIPhoneX = function(cb: Function) {
@@ -52,7 +44,6 @@ export const IsIPhoneX = function(cb: Function) {
     },
   })
 }
-
 interface WxToastOption {
   /** 提示的内容 */
   msg: string
@@ -86,6 +77,7 @@ export function wxConfirm(msg: Object, cb1?, cb2?) {
   Taro.showModal({
     title: msg['title'] || '提示',
     content: msg['msg'] || '',
+    showCancel: msg['showCancel'] || true,
     cancelText: msg['cancelText'] || '取消',
     confirmText: msg['confirmText'] || '确定',
   }).then((res) => {

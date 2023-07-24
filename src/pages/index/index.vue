@@ -19,12 +19,15 @@
 <script>
 import './index.scss'
 import { useCounterStore } from '../../stores/counter'
+import { IsIPhoneX } from '../../utils'
 
 export default {
-  name: 'Index',
+  name: 'index-page',
   setup(){
     const counter = useCounterStore()
-
+    IsIPhoneX((flag, bottom)=>{
+      console.log(flag, bottom)
+    })
     const onAdd = (count) => {
       if(counter.count<1 && count != 1) {
         return

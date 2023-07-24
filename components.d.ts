@@ -11,5 +11,6 @@ declare module 'vue' {
     NutCol: typeof import('@nutui/nutui-taro')['Col']
     NutEmpty: typeof import('@nutui/nutui-taro')['Empty']
     NutRow: typeof import('@nutui/nutui-taro')['Row']
+    Uploader: typeof import('./src/components/uploader/uploader.vue')['default']
   }
 }

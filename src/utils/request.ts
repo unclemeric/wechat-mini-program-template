@@ -1,24 +1,25 @@
 import Taro from "@tarojs/taro";
-import { SessionKey,reLogin } from "./index";
-import Api from '../api/index'
+import { SessionKey } from "./index";
+import { reLogin } from "./login";
+import { getApi_prefix } from './index'
 
-const baseURL = Api.api_prefix;
 let cnt = 0;
 let timeoutCnt = 0
 
 function request(method, url, data:any) {
+  
   return new Promise(function (resolve, reject) {
     // if (!Store.state.token) {
     //   return Taro.navigateTo({
     //     url: "/pages/login/index",
     //   });
-    // }  
+    // }
+    const baseURL = getApi_prefix()
     let header = {
       "content-type": "application/json",
     };
     header["Authorization"] = Taro.getStorageSync(SessionKey) || '';
     // header["X-Auth-Token"] ='eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjQ1NjIyMjM4Mjg0OTYzODQwIiwic3ViIjoiU1VQUExJRVIiLCJpYXQiOjE2Mzg4NDg1NTUsIkxvZ2lubmFtZSI6IuiwouaYpeiKsyIsIk1vYmlsZSI6IjE1OTcwODg0MDU4IiwiUGFyZW50SWQiOjEyNDU2MjIyMzgxMjEzODU5ODQsIk5pZCI6IjM2MjEzMjE5NzEwNDA2MjkxMSIsIlBhcmVudE5pZCI6IjM2MjEzMjE5NzEwNDA2MjkxMSIsIkFkbWluIjp0cnVlLCJMZXZlbCI6IjEiLCJBZG1pbmlzdHJhdG9yIjoi5L-h5oGv6YOofDE3Nzc2MjQ0NjcyIiwiZXhwIjoxNjk5MzI4NTU1fQ.jhP7N8K_gE_pH9RoESgYkRlAM5yoCkiQuiZy1WhQfO4'
-    
     Taro.request({
       url: baseURL + url,
       method: method,
@@ -53,8 +54,7 @@ function request(method, url, data:any) {
             reject('接口服务未启动');
           } else {
             //其他异常
-            Taro.showToast({title: res.data.msg || '请求出错了~', icon: 'none'});
-            reject({ msg: res.data.msg || '请求出错了~',data: null, success:false});
+            reject({ msg: res.data.msg || '请求出错了~~',data: null, success:false});
           }
         }
       },
