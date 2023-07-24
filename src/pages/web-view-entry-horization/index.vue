@@ -1,7 +1,7 @@
 <template>
-  <div class="container-view reading-situation-list">
+  <view>
     <web-view v-if="sessionKey" :src="`https://www.xxxx.cn/xxx/#/${entry}?${queryParams}`"></web-view>
-  </div>
+  </view>
 </template>
 
 <script>
