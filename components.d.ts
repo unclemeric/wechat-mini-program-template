@@ -7,10 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    NutButton: typeof import('@nutui/nutui-taro')['Button']
-    NutCol: typeof import('@nutui/nutui-taro')['Col']
-    NutEmpty: typeof import('@nutui/nutui-taro')['Empty']
-    NutRow: typeof import('@nutui/nutui-taro')['Row']
-    Uploader: typeof import('./src/components/uploader/uploader.vue')['default']
+    CustomInput: typeof import('./src/components/custom-input/index.vue')['default']
+    CustomNav: typeof import('./src/components/custom-nav/index.vue')['default']
+    NutMenu: typeof import('@nutui/nutui-taro')['Menu']
+    NutMenuItem: typeof import('@nutui/nutui-taro')['MenuItem']
+    NutSwitch: typeof import('@nutui/nutui-taro')['Switch']
+    NutTabPane: typeof import('@nutui/nutui-taro')['TabPane']
+    NutTabs: typeof import('@nutui/nutui-taro')['Tabs']
   }
 }

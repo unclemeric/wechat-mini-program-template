@@ -44,6 +44,29 @@ export const IsIPhoneX = function(cb: Function) {
     },
   })
 }
+
+export const getStatusBarHeight = ()=> {
+  let menuButtonObject = Taro.getMenuButtonBoundingClientRect();
+  const sysInfo = Taro.getSystemInfoSync()
+
+  const statusBarHeight = sysInfo.statusBarHeight || 0;
+  // 胶囊距离顶部距离
+  let navTop = menuButtonObject.top
+  //导航栏总体高度
+  let navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;
+
+  // 获取胶囊距离右边的距离
+  const navRight = sysInfo.windowWidth - menuButtonObject.right
+
+  // 胶囊按钮与右侧的距离 = windowWidth - right+胶囊宽度
+  // const navObjWid = sysInfo.windowWidth - menuButtonObject.right + menuButtonObject.width
+
+  // 胶囊高度
+  const capsuleHeight = menuButtonObject.height;
+  console.log({ statusBarHeight, navTop, navHeight, navRight, capsuleHeight })
+  return { statusBarHeight, navTop, navHeight, navRight, capsuleHeight }
+}
+
 interface WxToastOption {
   /** 提示的内容 */
   msg: string

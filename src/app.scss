@@ -10,14 +10,15 @@ page {
   padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
   height: 100vh;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.main-container {
-  height: calc(100% - 38px);
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 10px;
-}
+// .main-container {
+//   height: calc(100% - 38px);
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   padding: 10px 5px;
+// }
 
 .fixed-bottom {
   background-color: #fff;
@@ -84,4 +85,45 @@ page {
 
 .nut-tag--primary {
   background: #65c1ff !important;
+}
+
+
+.text {
+  width: 70px;
+  height: 20px;
+  opacity: 0.8;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  font-size: 14px;
+  color: #888888;
+}
+.blue {
+  color: #4E84FFFF;
+}
+
+.nut-menu .nut-menu__bar {
+  background-color: transparent !important;
+  box-shadow:none !important;
+}
+
+.nut-tab-pane {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.nut-menu__title-text {
+  font-size: 14px;
+  color: #37343B;
+}
+
+.nut-menu__title {
+  .nut-icon {
+    font-size: 12px !important;
+  }
+}
+
+.nut-tabs__titles-item {
+  width: auto !important;
+  padding: 10px 30px !important;
+  flex: inherit !important;
 }

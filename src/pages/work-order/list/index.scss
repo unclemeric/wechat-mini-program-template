@@ -1,0 +1,32 @@
+.work-order-list-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(180deg, #73A3D9 1%, #e7eef6fc 90%);
+  border-radius: 2.92px;
+}
+.container {
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+.custom-tab-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 0 20px 0 10px;
+}
+.custom-title {
+  height: 22px;
+  font-family: MicrosoftYaHei-Bold;
+  cursor: pointer;
+  font-size: 17px;
+  color: #222222;
+  text-align: center;
+}
+.custom-title.active {
+  // width: 48.48rpx;
+  font-weight: 700;
+}

@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import CustomNav from './components/custom-nav/index.vue'
+import CustomInput from './components/custom-input/index.vue'
 
 import './app.scss'
 
@@ -10,5 +12,6 @@ const App = createApp({
 })
 
 App.use(createPinia())
+App.use(CustomNav).use(CustomInput)
 
 export default App

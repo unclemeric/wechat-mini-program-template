@@ -1,4 +1,0 @@
-<view>
-  <textarea class="wx-textarea" cursor-spacing="50" 	disable-default-padding="{{true}}" show-confirm-bar="{{false}}" value="{{value}}" bindinput="changeHandle" bindblur="blurHandle" bindfocus="focusHandle" bindlinechange="reactionHeight" placeholder="请输入..." maxlength="1000000" style="height: {{isFocus ? 260 : height}}px"></textarea>
-  <slot></slot>
-</view>

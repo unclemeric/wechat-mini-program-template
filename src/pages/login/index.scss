@@ -1,0 +1,55 @@
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(180deg, #DFEAFB 0%, #FFFFFF 56%);
+  border-radius: 2.92px;
+}
+.logo-box {
+  margin-top: 22.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30vh;
+  .logo-bg {
+    width: 113.61px;
+    height: 113.61px;
+    background-image: linear-gradient(180deg, #ECF2FD 0%, #F9FBFE 100%);
+    border: 2.04px solid #FFFFFF;
+    box-shadow: 0 5.84px 8.76px 0 #3c72b82e;
+    border-radius: 45.56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    .logo {
+      width: 68.63px;
+      height: 66.88px;
+    }
+  }
+  .logo-en-name {
+    width: 138.57px;
+    height: 31.54px;
+    margin-bottom: 5px;
+  }
+  .logo-cn-name {
+    width: 129.67px;
+    height: 28.91px;
+    opacity: 0.8;
+    font-family: MicrosoftYaHei;
+    font-size: 21.61px;
+    color: #959595;
+  }
+}
+.login-btn {
+  width: 321.26px;
+  height: 52.57px;
+  
+  border-radius: 26.29px;
+}
+
+.mobile {
+  background: #FFFFFF;
+  border: 0.29px solid #DDDDDD;
+  box-shadow: 0 5.84px 11.68px 0 #00000024;
+}

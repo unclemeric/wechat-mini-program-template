@@ -1,8 +1,8 @@
 {
-  "name": "wechat-mini-program-template",
+  "name": "besita-wechat",
   "version": "1.0.0",
   "private": true,
-  "description": "taro 微信小程序模板",
+  "description": "工具工单管理",
   "templateInfo": {
     "name": "vue3-pinia",
     "typescript": true,

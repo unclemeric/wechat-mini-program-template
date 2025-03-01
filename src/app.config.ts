@@ -1,8 +1,11 @@
 export default {
   pages: [
-    'pages/index/index',
-    "pages/web-view-entry-vertical/index", // webview纵向页面
-    "pages/web-view-entry-horization/index", // webview横向页面
+    'pages/work-order/list/index',
+    'pages/work-order/detail/index',
+    'pages/index/detail/index',
+    'pages/index/list/index',
+    'pages/mobile-login/index',
+    'pages/login/index',
   ],
   // subPackages: [
   //   {
@@ -30,6 +33,33 @@ export default {
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black',
-    enablePullDownRefresh: false
+    enablePullDownRefresh: false,
+    // navigationBarTitleFontSize: 18
+  },
+  tabBar: {
+    custom: false,
+    color: '#898989',
+    selectedColor: '#4B75E0',
+    backgroundColor: '#ffffff',
+    list: [
+      {
+        pagePath: 'pages/index/list/index',
+        text: '首页',
+        iconPath: 'assets/images/nav-icon-1.png',
+        selectedIconPath: 'assets/images/nav-icon-1-active.png'
+      },
+      {
+        pagePath: 'pages/work-order/list/index',
+        text: '工单',
+        iconPath: 'assets/images/nav-icon-2.png',
+        selectedIconPath: 'assets/images/nav-icon-2-active.png'
+      },
+      {
+        pagePath: 'pages/mobile-login/index',
+        text: '我的',
+        iconPath: 'assets/images/nav-icon-3.png',
+        selectedIconPath: 'assets/images/nav-icon-3-active.png'
+      }
+    ]
   }
 }

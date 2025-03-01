@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "wechat-mini-program-template",
-  "description": "taro 微信小程序模板",
+  "projectname": "besita-wechat",
+  "description": "工具工单管理",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
