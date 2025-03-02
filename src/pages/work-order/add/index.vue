@@ -4,48 +4,34 @@
     <div class="main-container">
       <scroll-view style="height: 100%;" scroll-y="true">
         <div style="padding: 0 10rpx;box-sizing: border-box;">
-          <nut-cell-group style="padding: 20rpx 0;">
-            <nut-cell class="no-border">
-              <div style="width: 100%;display: flex;flex-direction: column;justify-content: flex-start;">
-                <div style="display: flex;align-items: center;width: 100%;">
-                  <div style="font-size: 28rpx;color:#202020;display: flex;align-items: center;width: 100%;"><image :src="iconInfoB" style="width: 48rpx;height: 48rpx;padding-right: 10rpx;"/>基本信息</div>
-                </div>
+          <nut-cell-group>
+            <nut-cell>
+              <div style="display: flex;align-items: center;width: 100%;">
+                <div style="width:180rpx">工单编号：</div>
+                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ 'TW-2025-0224-001' }}</div>
               </div>
             </nut-cell>
             <nut-cell>
               <div style="display: flex;align-items: center;width: 100%;">
-                <div style="width:180rpx">工单编号</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ orderName }}</div>
+                <div style="width:180rpx">工单名称：</div>
+                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;"><nut-input v-mode="orderName" :border="false" style="padding: 10rpx 0;" placeholder="请输入工单名称"/></div>
               </div>
             </nut-cell>
+          </nut-cell-group>
+
+          <nut-cell-group>
             <nut-cell>
               <div style="display: flex;align-items: center;width: 100%;">
                 <div style="width:180rpx">车间名称</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ workerName }}</div>
+                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;"><nut-input v-mode="orderName" disabled :border="false" style="padding: 10rpx 0;" placeholder="请选择"/></div>
+                <image style="width: 48rpx;height: 48rpx" :src="iconArrowDown"/>
               </div>
             </nut-cell>
             <nut-cell>
               <div style="display: flex;align-items: center;width: 100%;">
-                <div style="width:180rpx">所在工位</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ belong }}</div>
-              </div>
-            </nut-cell>
-            <nut-cell>
-              <div style="display: flex;align-items: center;width: 100%;">
-                <div style="width:180rpx">车型</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ carType }}</div>
-              </div>
-            </nut-cell>
-            <nut-cell>
-              <div style="display: flex;align-items: center;width: 100%;">
-                <div style="width:180rpx">创建日期</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ createDate }}</div>
-              </div>
-            </nut-cell>
-            <nut-cell>
-              <div style="display: flex;align-items: center;width: 100%;">
-                <div style="width:180rpx">完成日期</div>
-                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;">{{ completeDate }}</div>
+                <div style="width:180rpx">所在工位：</div>
+                <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;"><nut-input v-mode="orderName" disabled :border="false" style="padding: 10rpx 0;" placeholder="请选择"/></div>
+                <image style="width: 48rpx;height: 48rpx" :src="iconArrowDown"/>
               </div>
             </nut-cell>
           </nut-cell-group>
@@ -54,11 +40,7 @@
             <nut-cell>
               <div style="width: 100%;display: flex;flex-direction: column;justify-content: flex-start;">
                 <div style="display: flex;align-items: center;width: 100%;">
-                  <div style="display: flex;align-items: center;width: 100%;">
-                    <div style="font-size: 28rpx;color:#202020;display: flex;align-items: center;width: 100%;">
-                      <image :src="iconProcessStep" style="width: 48rpx;height: 48rpx;padding-right: 10rpx;"/>工序
-                    </div>
-                  </div>
+                  <div style="width:180rpx">选择工序：</div>
                   <div style="flex: 1; padding: 0 20rpx;font-size: 28rpx;"><nut-input v-mode="orderName" disabled :border="false" style="padding: 10rpx 0;" placeholder="请选择"/></div>
                   <image style="width: 48rpx;height: 48rpx" :src="iconArrowDown"/>
                 </div>
@@ -87,6 +69,8 @@
               </div>
             </nut-cell>
           </nut-cell-group>
+          <button style="width: 100%;height: 100rpx;line-height: 100rpx;background: #4B75E0FF;box-shadow: 0 5.84px 11.68px 0 #386aa56e;color: #fff;font-size: 28rpx;margin: 30rpx auto;">创建</button>
+          <div style="height: 10rpx;"></div>
         </div>
       </scroll-view>
     </div>
@@ -98,12 +82,5 @@ import { ref } from 'vue';
 import './index.scss'
 import iconArrowDown from '../../../assets/images/icon-arrow-down.png'
 import iconArrowRight from '../../../assets/images/icon-arrow-right.png'
-import iconInfoB from '../../../assets/images/icon-info-b.png'
-import iconProcessStep from '../../../assets/images/icon-process-step.png'
-const orderName = ref('TW-2025-0224-00')
-const createDate = ref('2025-02-24 10:20:20')
-const completeDate = ref('2025-02-24 14:20:20')
-const carType = ref('498W')
-const belong = ref('拧紧工位A')
-const workerName = ref('张三')
+const orderName = ref('')
 </script>

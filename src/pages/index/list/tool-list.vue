@@ -97,27 +97,27 @@
    <div class="tool-tab-container">
     <nut-menu>
       <nut-menu-item v-model="searchOption.state" :options="stateOptions" />
-      <nut-menu-item v-model="searchOption.workshop" :options="workshopOptions" />
-      <nut-menu-item v-model="searchOption.createTime" :options="createTimeOptions" @change="onChange" />
+      <nut-menu-item v-model="searchOption.workshopId" :options="workshopOptions" />
+      <nut-menu-item v-model="searchOption.createTime" :options="createTimeOptions" />
     </nut-menu>
     <div class="tool-items">
-      <div class="tool-item" v-for="item in 20" :key="item" @click="detailView()">
+      <div class="tool-item" v-for="item in toolList" :key="item.id" @click="detailView(item.id || '')">
         <div class="tool-info-box">
           <div class="tool-img">
-            <image style="width: 140rpx;height: 140rpx" :src="ToolImg"/>
+            <image style="width: 140rpx;height: 140rpx" :src="item.icon"/>
           </div>
           <div class="tool-info">
-            <div class="title">锂电池冲击角磨机01号</div>
+            <div class="title">{{ item.name}}</div>
             <div class="sub-infos">
-              <div class="sub-info">工具编号: TW-001</div>
-              <div class="sub-info">所在位置: XX车间</div>
-              <div class="sub-info">负责人: 张三</div>
+              <div class="sub-info">工具编号: {{ item.toolsSerialNumber }}</div>
+              <div class="sub-info">所在位置: {{ item.workshop}}</div>
+              <div class="sub-info">负责人: {{ item.master }}</div>
             </div>
           </div>
         </div>
         <div class="tool-state">
-          <div>创建时间：2025-11-04</div>
-          <div>工作状态：正常</div>
+          <div>创建时间：{{ new Date(item.createTime || '').toLocaleDateString().substring(0, 12).replace(/\//g, '-') }}</div>
+          <div>工作状态：{{ToolStateText[item.online || 0]}}</div>
         </div>
       </div>
     </div>
@@ -126,35 +126,62 @@
 
 <script lang="ts" setup>
 
-import { ref } from 'vue';
-import ToolImg from '../../../assets/images/tool_demo.png'
+import { ref, watch } from 'vue';
 import Taro from '@tarojs/taro';
+import { ToolList } from '../../../api/tools';
+import { SearchOption, ToolInfo } from '../../../utils/types';
+import { ToolStateText } from '../../../constant';
+import { getWorkshops } from '../../../api/common';
 
-const searchOption = ref({
+const props = defineProps({
+  name: {
+    type: String,
+    required: true
+  }
+})
+
+const searchOption = ref<SearchOption>({
   state: '',
-  workshop: '',
+  workshopId: '',
   createTime: ''
 })
-const stateOptions = ref([
-  { text: '状态', value: ''},
-  { text: '正常', value: '1' },
-  { text: '异常', value: '2' },
-])
-const workshopOptions = ref([
-  { text: '车间', value: '' },
-  { text: '车间1', value: '1' },
-  { text: '车间2', value: '2' },
-])
+
+const toolList = ref<ToolInfo[]>([])
+
+const stateOptions = ref<{ text: string, value: string }[]>([])
+const workshopOptions = ref<{ text: string, value: string }[]>([])
 const createTimeOptions = ref([
   { text: '创建时间', value: '' },
   { text: '升序', value: 'desc' },
   { text: '降序', value: 'asc' },
 ])
-const onChange = ()=> {
-  console.log('改变了')
+
+const detailView = (id: string) =>{
+  Taro.navigateTo({url: '/pages/index/detail/index?id=' + id})
 }
 
-const detailView = () =>{
-  Taro.navigateTo({url: '/pages/index/detail/index'})
+const getList = async()=> {
+  // const { name } = Taro.getCurrentInstance().router?.params || {}
+  const res = await ToolList(searchOption.value, props.name)
+  if(res.code === 0) {
+    toolList.value = res.data.list
+  }
 }
+const getWorkshopList = async () => {
+  const res = await getWorkshops({})
+  console.log(res)
+  workshopOptions.value = [{ text: '车间', value: '' }, ...res.data.list.map((item: any) => ({ text: item.name, value: String(item.id) })) ]
+}
+
+const getStateList = () => {
+  const keys = Object.keys(ToolStateText)
+  const result = keys.map((item: any) => ({ text: ToolStateText[item], value: String(item) }))
+  stateOptions.value = [{ text: '状态', value: ''}, ...result]
+}
+getStateList()
+getWorkshopList()
+getList()
+watch(searchOption, () => {
+  getList()
+}, { deep: true })
 </script>

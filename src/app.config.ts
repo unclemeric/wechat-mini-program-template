@@ -1,11 +1,12 @@
 export default {
   pages: [
-    'pages/work-order/list/index',
-    'pages/work-order/detail/index',
-    'pages/index/detail/index',
     'pages/index/list/index',
-    'pages/mobile-login/index',
     'pages/login/index',
+    'pages/work-order/detail/index',
+    'pages/work-order/add/index',
+    'pages/work-order/list/index',
+    'pages/index/detail/index',
+    'pages/mobile-login/index',
   ],
   // subPackages: [
   //   {
@@ -54,12 +55,12 @@ export default {
         iconPath: 'assets/images/nav-icon-2.png',
         selectedIconPath: 'assets/images/nav-icon-2-active.png'
       },
-      {
-        pagePath: 'pages/mobile-login/index',
-        text: '我的',
-        iconPath: 'assets/images/nav-icon-3.png',
-        selectedIconPath: 'assets/images/nav-icon-3-active.png'
-      }
+      // {
+      //   pagePath: 'pages/mobile-login/index',
+      //   text: '我的',
+      //   iconPath: 'assets/images/nav-icon-3.png',
+      //   selectedIconPath: 'assets/images/nav-icon-3-active.png'
+      // }
     ]
   }
 }

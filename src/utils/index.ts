@@ -1,11 +1,15 @@
 import Taro from '@tarojs/taro'
+import { emptyCacheLoginInfo } from './login'
 export const AppId = 'wxf04c0357243ae27c'
-export const UserInfoKey = '_user_info'
-export const SessionKey = '_session_key'
+export const UserInfoKey = 'userInfo'
+export const UserIdKey = 'userId'
+export const TokenKey = 'token'
+export const RefreshTokenKey = 'refreshToken'
 
 export const isPro = true // isPro=true正式，isPro=false测试
-export const api_prefix = 'https://www.hwagain.cn/childread' // 正式小程序  cn改为net，测试net改为cn
-export const web_prefix  = 'https://www.hwagain.cn/wx_childread' // 正式webview  cn改为net，测试net改为cn
+export const api_prefix = 'http://111.61.36.187:3000/besita' // 正式小程序 
+// export const api_prefix = 'http://183.233.146.37:81/besita'
+export const web_prefix  = 'http://111.61.36.187:3000/kowHong/h5' // 正式webview  cn改为net，测试net改为cn
 
 export const getApi_prefix = () : String => {
   // let val = `${api_prefix}${releaseType ? (isPro ? '' : '_dev') : '_tiyan'}`
@@ -22,14 +26,6 @@ export const getWebview_prefix = (path = '') : String => {
 
 export const getWebview_prefix_img = () : String => {
   return getWebview_prefix('/img')
-}
-
-export function setBirthday(date: String) {
-  let user = Taro.getStorageSync(UserInfoKey)
-  if (user.birthday !== date) {
-    user.birthday = date
-    Taro.setStorageSync(UserInfoKey, user)
-  }
 }
 
 export const IsIPhoneX = function(cb: Function) {

@@ -2,7 +2,7 @@
   "miniprogramRoot": "./",
   "projectname": "besita-wechat",
   "description": "工具工单管理",
-  "appid": "touristappid",
+  "appid": "wxa333b4d65445048c",
   "setting": {
     "urlCheck": true,
     "es6": false,

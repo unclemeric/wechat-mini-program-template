@@ -20,6 +20,12 @@ import './index.scss'
 // import lockIcon from '../../../assets/images/icon-lock.png'
 import { ref } from 'vue';
 import WorkOrderTabContainer from './work-order-list.vue';
+import { getWorkshops } from '../../../api/common';
+
+const getWorkshopList = async () => {
+  const res = await getWorkshops({})
+  console.log(res)
+}
 
 const value = ref('1')
 </script>

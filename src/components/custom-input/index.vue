@@ -1,7 +1,7 @@
 <template>
   <div class="custom-input">
     <div class="icon-left" v-if="leftIcon"><image :src="leftIcon" style="width: 26px;height: 26px;"/></div>
-    <div class="input-box"><input v-model="text" :placeholder="placeholder"/></div>
+    <div class="input-box"><input v-model="text" :placeholder="placeholder" :type="type"/></div>
     <div class="icon-right">
       <slot name="right"></slot>
     </div>
@@ -13,6 +13,11 @@ import "./index.scss"
 
 export default {
   props: {
+    type: {
+      type: String,
+      default: () => "text",
+      validator: (val: string) => ["text", "password", "number", "digit", 'email'].includes(val),
+    },
     title: {
       type: String,
       default: () => "",

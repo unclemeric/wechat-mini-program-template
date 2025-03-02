@@ -33,17 +33,12 @@
   line-height: 18px;
 }
 .nut-cell {
-  &:not(:last-child){
+  &:not(:last-child) {
     &::after {
       content: ' ';
       width: calc(100% - 30px);
       height: 1px;
       background-color: #F0F2F6;
-    }
-  }
-  &.no-border {
-    &::after {
-      display: none !important;
     }
   }
 }

@@ -1,37 +1,61 @@
 import Taro from "@tarojs/taro";
-import { SessionKey } from "./index";
-import { reLogin } from "./login";
+import { RefreshTokenKey, TokenKey, UserIdKey, wxAlert, wxConfirm } from "./index";
+import { cacheLoginInfo, rejectLogin, reLogin } from "./login";
 import { getApi_prefix } from './index'
+import { ResponseBody } from "./types";
+import type { RequestMethod } from "./types";
+import { refreshToken } from "../api/common";
 
 let cnt = 0;
 let timeoutCnt = 0
 
-function request(method, url, data:any) {
+function request<T>(method: RequestMethod, url: string, data: any, headerConfig?: { contentType?: string}) : Promise<ResponseBody<T>> {
   
   return new Promise(function (resolve, reject) {
-    // if (!Store.state.token) {
-    //   return Taro.navigateTo({
-    //     url: "/pages/login/index",
-    //   });
-    // }
     const baseURL = getApi_prefix()
     let header = {
-      "content-type": "application/json",
+      "content-type": headerConfig?.contentType || "application/json",
+      "tenant-id": Taro.getStorageSync(UserIdKey)
     };
-    header["Authorization"] = Taro.getStorageSync(SessionKey) || '';
+    const token = Taro.getStorageSync(TokenKey) || ''
+    if(token) {
+      header["Authorization"] = 'Bearer ' + token;
+    }
     // header["X-Auth-Token"] ='eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMjQ1NjIyMjM4Mjg0OTYzODQwIiwic3ViIjoiU1VQUExJRVIiLCJpYXQiOjE2Mzg4NDg1NTUsIkxvZ2lubmFtZSI6IuiwouaYpeiKsyIsIk1vYmlsZSI6IjE1OTcwODg0MDU4IiwiUGFyZW50SWQiOjEyNDU2MjIyMzgxMjEzODU5ODQsIk5pZCI6IjM2MjEzMjE5NzEwNDA2MjkxMSIsIlBhcmVudE5pZCI6IjM2MjEzMjE5NzEwNDA2MjkxMSIsIkFkbWluIjp0cnVlLCJMZXZlbCI6IjEiLCJBZG1pbmlzdHJhdG9yIjoi5L-h5oGv6YOofDE3Nzc2MjQ0NjcyIiwiZXhwIjoxNjk5MzI4NTU1fQ.jhP7N8K_gE_pH9RoESgYkRlAM5yoCkiQuiZy1WhQfO4'
     Taro.request({
       url: baseURL + url,
       method: method,
       timeout: 15000,
-      data: (method.toString()).toLowerCase() === "post" ? JSON.stringify(data) : data,
+      data: (method.toString()).toLowerCase() === "post" ? headerConfig?.contentType === "application/json" ? JSON.stringify(data) : data : data,
       header: header,
       async success(res) {
         timeoutCnt = 0 // 重置超时请求计数
         //请求成功
         //判断状态码---errCode状态根据后端定义来判断
         if (res.statusCode === 200) {
-          resolve(res.data);
+          if(res.data.code === 401) {
+            const refresh_token = Taro.getStorageSync(RefreshTokenKey)
+            console.log(refresh_token)
+            if(refresh_token) {
+              const res = await refreshToken({refreshToken: refresh_token})
+              if(res.code === 0) {
+                cacheLoginInfo(res.data)
+                // Taro.setStorageSync(TokenKey,accessToken);
+                resolve(await request(method,url,data))
+              } else {
+                rejectLogin()
+                reject({ msg: '登录已过期,请重新登录',data: null, success:false});
+              }
+              return
+            } else {
+              return
+            }
+          }
+          resolve({
+            code: res.data.code,
+            msg: res.data.msg,
+            data: res.data.data as T,
+          });
         } else {
           Taro.hideLoading();          
           if (res.statusCode === 401) {
@@ -39,10 +63,10 @@ function request(method, url, data:any) {
              cnt++;
             await reLogin((res)=>{
               if(url.startsWith('/wx/')) {
-                const { sessionKey = '' } = res.data || {}
-                data.sessionKey = sessionKey
+                const { accessToken = '' } = res.data || {}
+                data.accessToken = accessToken
               }
-              // Taro.setStorageSync(SessionKey,sessionKey);
+              // Taro.setStorageSync(TokenKey,accessToken);
               // request(method, url, data)
             })
             resolve(await request(method,url,data))

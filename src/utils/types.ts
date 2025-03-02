@@ -1,14 +1,87 @@
-export interface SongLrcItem {
-  text: string
-  time: string
+export interface ResponseBody<T>{
+  code: number,
+  msg: string,
+  data: T
 }
 
-export interface SongRecord {
-  id?: string // 记录id
-  musicInfoId: string // 歌曲id
-  cycleStartTime: string // 循环播放开始时间
-  startTime: string // 开始播放时间
-  endTime: string // 结束播放时间
-  playDuration: number // 播放时长
-  playType: number // 1 单曲 2 循环
+export interface LoginRes {
+  accessToken: string
+  expiresTime: number
+  refreshToken: string
+  userId: number
+}
+
+export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+export interface SearchOption {
+  state?: string
+  workshopId?: string
+  createTime?: string
+}
+
+export interface ToolInfo {
+  id?: string
+  icon?: string
+  master?: string
+  name?: string
+  online?: number
+  toolsSerialNumber?: string
+  workshop?: string
+  createTime?: number
+  deviceFunctions?: DeviceFunction[]
+}
+
+export interface DeviceFunction {
+  category?: string
+  commands?: Command[]
+  dataRangeMax?: string
+  dataRangeMin?: string
+  displayModel?: number
+  flag?: string
+  flagValue?: string | number
+  functionType: number
+  icon?: string
+  id: string
+  instructions: any
+  name: string
+  params?: any[]
+  sort: number
+  unit?: string
+}
+
+export interface Command {
+  name: string
+  value: string
+  sort: number
+  icon: string
+}
+export interface OrderInfo {
+  id: string
+  name: string
+  code: string
+  workshopId: string
+  workshop: string
+  positionId: string
+  position: string
+  toolsSerialNumber: string
+  maxRetry: number
+  checkTotal: number
+  orderStatus: number
+  status: number
+  startTime: number
+  finishTime: number
+  description: string
+  createTime: number
+}
+
+
+export interface WorkShopInfo {
+  id: string
+  name: string
+  code: string
+  position: string
+  type: string
+  state: number
+  description: string
+  createTime: number
 }

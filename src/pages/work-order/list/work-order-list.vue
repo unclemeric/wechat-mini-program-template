@@ -41,7 +41,7 @@
               line-height: 24px;
               font-weight: 400;
               color: #202020;
-              width: 260px;
+              width: 245px;
               margin-right: 15px;
               padding: 0 10px;
               box-sizing: border-box;
@@ -105,20 +105,20 @@
       <nut-menu-item v-model="searchOption.createTime" :options="createTimeOptions" @change="onChange" />
     </nut-menu>
     <div class="work-order-items">
-      <div class="work-order-item" v-for="item in 20" :key="item" @click="detailView()">
+      <div class="work-order-item" v-for="item in orderList" :key="item.id" @click="detailView()">
         <div class="work-order-info-box">
           <div class="work-order-info">
             <div class="info-header">
               <div class="title">
                 <image :src="BillNolImg" style="width: 48rpx;height: 48rpx;"/>
-                <span>TW-2025-0224-001</span>
+                <span>{{ item.code }}</span>
               </div>
-              <span :class="{'normal': true, 'warning': false}">正常</span>
+              <span :class="{'normal': true, 'warning': false}">{{ OrderStateText[item.status] }}</span>
             </div>
             <div class="sub-infos">
-              <div class="sub-info">轮胎螺母拧紧(铝)01</div>
-              <div class="sub-info">车型：498W</div>
-              <div class="sub-info">工单日期：2025-02-24</div>
+              <div class="sub-info">{{ item.name }}</div>
+              <div class="sub-info">工位：{{ item.position || '' }}</div>
+              <div class="sub-info">工单日期：{{ new Date(item.createTime).toLocaleDateString().substring(0, 12).replace(/\//g, '-') }}</div>
             </div>
           </div>
         </div>
@@ -132,12 +132,17 @@
 import { ref } from 'vue';
 import BillNolImg from '../../../assets/images/icon-bill-no.png'
 import Taro from '@tarojs/taro';
+import { getOrderList } from '../../../api/order';
+import { OrderInfo } from '../../../utils/types';
+import { OrderStateText } from '../../../constant';
 
 const searchOption = ref({
   state: '',
   workshop: '',
   createTime: ''
 })
+
+const orderList = ref<OrderInfo[]>([])
 const stateOptions = ref([
   { text: '状态', value: ''},
   { text: '正常', value: '1' },
@@ -160,4 +165,13 @@ const onChange = ()=> {
 const detailView = () =>{
   Taro.navigateTo({url: '/pages/work-order/detail/index'})
 }
+
+const getList = async () => {
+  const res = await getOrderList()
+  if(res.code === 0) {
+    orderList.value = res.data.list
+  }
+}
+
+getList()
 </script>

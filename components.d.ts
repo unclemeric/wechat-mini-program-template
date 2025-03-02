@@ -9,8 +9,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     CustomInput: typeof import('./src/components/custom-input/index.vue')['default']
     CustomNav: typeof import('./src/components/custom-nav/index.vue')['default']
+    NutCell: typeof import('@nutui/nutui-taro')['Cell']
+    NutCellGroup: typeof import('@nutui/nutui-taro')['CellGroup']
+    NutInput: typeof import('@nutui/nutui-taro')['Input']
     NutMenu: typeof import('@nutui/nutui-taro')['Menu']
     NutMenuItem: typeof import('@nutui/nutui-taro')['MenuItem']
+    NutStep: typeof import('@nutui/nutui-taro')['Step']
+    NutSteps: typeof import('@nutui/nutui-taro')['Steps']
     NutSwitch: typeof import('@nutui/nutui-taro')['Switch']
     NutTabPane: typeof import('@nutui/nutui-taro')['TabPane']
     NutTabs: typeof import('@nutui/nutui-taro')['Tabs']
